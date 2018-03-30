@@ -1,0 +1,44 @@
+.loginWrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -160px 0 0 -160px;
+    width: 320px;
+    height: 320px;
+    padding: 36px;
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.08);
+}
+
+.logo {
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    height: 40px;
+    line-height: 40px;
+    justify-content: center;;
+    margin-bottom: 24px;
+}
+
+.logo img {
+    width: 40px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.logo span {
+    vertical-align: text-bottom;
+    font-size: 16px;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+.formWrapper input {
+    height: 32px;
+    font-size: 12px;
+}
+
+.formWrapper button {
+    height: 32px;
+    width: 100%;
+    font-size: 12px;
+}
