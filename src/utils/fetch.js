@@ -1,12 +1,12 @@
 import storage from '../utils/storage';
 import axios from 'axios';
-import { baseUrl } from './index';
+import { baseUrl } from '../constants';
 
 let fetcher = axios.create({
     method: 'post',
     baseURL: baseUrl,
     withCredentials: true,
-    transformRequest: [function (data) {
+    transformRequest: [(data) => {
         const userInfo = storage.get('user');
         if (userInfo && data && !data.NOUSERINFO) {
             data.userName = userInfo.userName;
@@ -20,18 +20,18 @@ let fetcher = axios.create({
     }
 });
 
-fetcher.interceptors.request.use(function (config) {
+fetcher.interceptors.request.use((config) => {
     return config;
-}, function (error) {
+}, (error) => {
     return Promise.reject(error);
 });
 
-fetcher.interceptors.response.use(function (response) {
+fetcher.interceptors.response.use((response) => {
     if (response.data.code === 89001 || response.data.code === 81001) {
         window.location.href = '/login';
     }
     return response.data;
-}, function (error) {
+}, (error) => {
     return Promise.reject(error);
 });
 

@@ -1,6 +1,6 @@
 import { REDUCERS_NAME } from '../constants/StateName';
 
-const loginRedux = (state = {
+const login = (state = {
     isAuthenticated: false,
     accessToken: '',
     userName: '',
@@ -12,7 +12,7 @@ const loginRedux = (state = {
                 ...state,
                 isAuthenticated: true,
                 accessToken: action.accessToken,
-                userName: ''
+                userName: action.userName
             };
         case REDUCERS_NAME.LOGOUT:
             return state;
@@ -21,5 +21,5 @@ const loginRedux = (state = {
     }
 };
 
-export default loginRedux;
+export default login;
 
