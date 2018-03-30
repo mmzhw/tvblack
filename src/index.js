@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
 import asyncComponent from './components/AsyncComponent';
 
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 // redux 和react-redux（关联react和redux）
 import { createStore, applyMiddleware } from 'redux';
@@ -27,33 +27,24 @@ const store = createStore(
 
 const routes = [
     {
-        path: PATH.ROOT,
-        exact: true,
-        component: Login
-    },
-    {
         path: PATH.APP,
         exact: true,
         component: VideoList,
     }
 ];
 
-const requireAuth = (nextState, replaceState) => {
-    console.log('nextState:', nextState);
-    console.log('replaceState:', replaceState);
-    console.log('store:', store);
-    console.log('this:', this);
-};
-
 const RouteWithSubRoutes = route => (
     <Route
         path={route.path}
         exact={route.exact}
-        onEnter={requireAuth}
-        render={props => (
+        render={ (props) => {
             // pass the sub-routes down to keep nesting
-            <route.component {...props} routes={route.routes} />
-        )}
+            let { isAuthenticated } = store.getState().login;
+            if (isAuthenticated) {
+                return (<route.component {...props} routes={route.routes} />);
+            }
+            return (<Redirect to={PATH.ROOT}/>);
+        }}
     />
 );
 
@@ -62,6 +53,7 @@ ReactDOM.render(
     <Provider store={store}>
         <Router>
             <Switch>
+                <Route path={PATH.ROOT} exact={true} component={Login}/>
                 {routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
             </Switch>
         </Router>
