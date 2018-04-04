@@ -20,7 +20,7 @@ class VideoDetailClass extends Component {
         this.state = {
             videoSources: [],
             videoId: props.match.params.id,
-            avatar: '',
+            avatar: '', // 头像地址
             videoVisable: false, // 视频播放框是否显示
         };
         this.fetchVideoDetail();
