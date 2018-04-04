@@ -1,0 +1,17 @@
+.logo {
+    justify-content: center;
+    display: flex;
+    margin: 20px 0;
+}
+
+.logo img {
+    width: 35px;
+    margin: 0 10px;
+    vertical-align: top;
+}
+
+.logo span {
+    font-size: 20px;
+    color: #fff;
+    line-height: 35px;
+}

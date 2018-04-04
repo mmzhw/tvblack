@@ -15,7 +15,12 @@ const login = (state = {
                 userName: action.userName
             };
         case REDUCERS_NAME.LOGOUT:
-            return state;
+            return {
+                ...state,
+                isAuthenticated: false,
+                accessToken: '',
+                userName: ''
+            };
         default:
             return state;
     }

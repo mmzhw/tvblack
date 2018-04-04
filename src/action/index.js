@@ -1,8 +1,10 @@
 import { message } from 'antd';
 import storage from '../utils/storage';
 import yxFetch from '../utils/fetch';
-import { REQ_URL } from '../constants';
+import { REQ_URL } from '../constants/index';
 import { REDUCERS_NAME } from '../constants/StateName';
+import { PATH } from '../constants/Link';
+import { STORAGE_NAME } from '../constants';
 
 export const loggedIn = (json, userName) => ({
     type: REDUCERS_NAME.LOGIN,
@@ -10,21 +12,36 @@ export const loggedIn = (json, userName) => ({
     userName: userName
 });
 
+export const loggedOut = (json, userName) => ({
+    type: REDUCERS_NAME.LOGOUT,
+    accessToken: '',
+    userName: ''
+});
+
 export const toLogin = (userInfo, history, from) => dispatch => {
     yxFetch(REQ_URL.LOGIN, {
         userName: userInfo.userName,
         password: userInfo.passWord,
-        NOUSERINFO: true,
     }).then(res => {
         if (res.code === 0) {
             dispatch(loggedIn(res, userInfo.userName));
-            storage.set('user', {
-                userName: userInfo.userName,
-                accessToken: res.data.accessToken
-            });
-            history.push(from || '/');
+            storage.set(STORAGE_NAME.USER_NAME, userInfo.userName);
+            storage.set(STORAGE_NAME.ACCESS_TOKEN, res.data.accessToken);
+            history.push(from || PATH.ROOT);
         } else {
-            // FIXME: 用dispatch触发方法
+            message.error(res.errmsg);
+        }
+    });
+};
+
+export const toLogout = (history, userName, accessToken) => dispatch => {
+    yxFetch(REQ_URL.LOGOUT, { userName, accessToken }).then(res => {
+        if (res.code === 0) {
+            dispatch(loggedOut());
+            storage.remove(STORAGE_NAME.USER_NAME);
+            storage.remove(STORAGE_NAME.ACCESS_TOKEN);
+            history.push(PATH.ROOT);
+        } else {
             message.error(res.errmsg);
         }
     });

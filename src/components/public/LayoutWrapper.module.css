@@ -1,0 +1,36 @@
+.wrapper {
+    height: 100vh;
+}
+
+.header {
+    background: #fff;
+    padding: 0;
+    text-align: right;
+}
+
+.header .user {
+    margin-right: 20px;
+}
+
+.header .userName {
+    color: black;
+    margin-left: 10px;
+}
+
+.content {
+    margin: 0 16px;
+}
+
+.breadcrumbWrapper {
+    margin: 16px 0;
+}
+
+.pageContent {
+    padding: 24px;
+    background: #fff;
+    min-height: 600px;
+}
+
+.footer {
+    text-align: center;
+}

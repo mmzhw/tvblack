@@ -1,16 +1,19 @@
 import storage from '../utils/storage';
 import axios from 'axios';
-import { baseUrl } from '../constants';
+import { BASE_URL } from '../constants/index';
+import { PATH } from '../constants/Link';
+import { STORAGE_NAME } from '../constants';
 
 let fetcher = axios.create({
     method: 'post',
-    baseURL: baseUrl,
+    baseURL: BASE_URL,
     withCredentials: true,
     transformRequest: [(data) => {
-        const userInfo = storage.get('user');
-        if (userInfo && data && !data.NOUSERINFO) {
-            data.userName = userInfo.userName;
-            data.accessToken = userInfo.accessToken;
+        const userName = storage.get(STORAGE_NAME.USER_NAME);
+        const accessToken = storage.get(STORAGE_NAME.ACCESS_TOKEN);
+        if (userName && accessToken) {
+            data.userName = userName;
+            data.accessToken = accessToken;
         }
         return JSON.stringify(data);
     }],
@@ -28,7 +31,7 @@ fetcher.interceptors.request.use((config) => {
 
 fetcher.interceptors.response.use((response) => {
     if (response.data.code === 89001 || response.data.code === 81001) {
-        window.location.href = '/login';
+        window.location.href = PATH.ROOT;
     }
     return response.data;
 }, (error) => {

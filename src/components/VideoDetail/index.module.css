@@ -1,0 +1,12 @@
+.playerWrapper {
+    position: relative;
+}
+
+.playerWrapper i {
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    top: 50%;
+    font-size: 30px;
+    margin: -15px 0 0 -15px;
+}
