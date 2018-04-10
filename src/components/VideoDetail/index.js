@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Form, Input, message, Avatar, Icon, Modal } from 'antd';
 import yxFetch from '../../utils/fetch';
-import { NAME, REQ_URL, WIDTH_DATA } from '../../constants';
+import { MESSAGE, NAME, REQ_URL, WIDTH_DATA } from '../../constants';
 import { handleImgUrl } from '../../utils/tools';
 import LayoutWrapper from '../public/LayoutWrapper';
 import { FORM_DATA, VIDEO_DETAIL_KEY } from './videoKey';
@@ -23,14 +23,13 @@ class VideoDetailClass extends Component {
             avatar: '', // 头像地址
             videoVisable: false, // 视频播放框是否显示
         };
-        this.fetchVideoDetail();
     }
 
-    async fetchVideoDetail() {
+    async componentDidMount() {
         let res = await yxFetch(REQ_URL.GET_VIDEO_DETAIL, {
             id: this.state.videoId,
         });
-        if (res.code === 0) {
+        if (res.code === 0 && res.data) {
             FORM_DATA.forEach((item) => {
                 let key = Object.keys(item)[0]; // 默认数组对象只有一个属性，只是为了映射
                 this.props.form.setFields({ [key]: { value: res.data[key] }});
@@ -40,10 +39,11 @@ class VideoDetailClass extends Component {
                     src: res.data.playUrl,
                 }],
                 avatar: handleImgUrl(res.data.avatar),
-                poster: handleImgUrl(res.data.picUrl),
+                poster: handleImgUrl(res.data.picUrl) || require('../../assets/none.png'),
             });
         } else {
-            message.error('获取视频信息失败');
+            console.log(MESSAGE.GET_VIDEO_FAILED, res);
+            message.error(MESSAGE.GET_VIDEO_FAILED);
         }
     }
 

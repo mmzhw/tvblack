@@ -2,12 +2,14 @@ import asyncComponent from '../components/AsyncComponent';
 
 const VideoList = asyncComponent(() => import('../components/VideoList'));
 const VideoDetail = asyncComponent(() => import('../components/VideoDetail'));
-const ChannelList = asyncComponent(() => import('../components/ChannelList'));
+const IndexOption = asyncComponent(() => import('../components/IndexOption'));
+const AdOption = asyncComponent(() => import('../components/AdOption'));
 
 export const PATH = {
     ROOT: '/',
     VIDEOS: '/videos',
-    CHANNELS: '/channels',
+    INDEXOPTIION: '/indexoption',
+    ADOPTION: '/ad',
 };
 
 export const ROUTES = [
@@ -22,17 +24,18 @@ export const ROUTES = [
         component: VideoDetail,
     },
     {
-        path: PATH.CHANNELS,
+        path: PATH.INDEXOPTIION,
         exact: true,
-        component: ChannelList,
+        component: IndexOption,
     },
     {
-        path: `${PATH.CHANNELS}/:id`,
+        path: PATH.ADOPTION,
         exact: true,
-        component: ChannelList,
-    }
+        component: AdOption,
+    },
 ];
 
+// PATH对应key，根据key显示name
 export const MENU_ITEMS = [
     {
         name: '视频管理',
@@ -41,9 +44,15 @@ export const MENU_ITEMS = [
         url: PATH.VIDEOS,
     },
     {
-        name: '频道配置',
-        key: 'channels',
+        name: '首页配置',
+        key: 'indexoption',
         iconType: 'switcher',
-        url: PATH.CHANNELS,
+        url: PATH.INDEXOPTIION,
+    },
+    {
+        name: '广告配置',
+        key: 'ad',
+        iconType: 'shop',
+        url: PATH.ADOPTION,
     },
 ];

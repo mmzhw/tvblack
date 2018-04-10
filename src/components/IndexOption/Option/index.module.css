@@ -1,0 +1,12 @@
+.configModule {
+    flex: 1;
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+.configVideo {
+    flex: 1;
+    margin-top: 20px;
+    margin-left: -50px;
+    border-left: 1px dashed #DDDDDD;
+}

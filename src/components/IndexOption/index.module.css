@@ -1,0 +1,21 @@
+.wrapper {
+    display: flex;
+}
+
+.left {
+    width: 190px;
+    margin-right: 20px;
+}
+
+.right {
+    flex: 1;
+}
+
+.option {
+    display: flex;
+}
+
+.publish {
+    width: 100%;
+    margin-bottom: 10px;
+}

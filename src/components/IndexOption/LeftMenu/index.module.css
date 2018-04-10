@@ -1,0 +1,60 @@
+.leftMenu {
+    border: 1px solid #DDD;
+    width: 100%;
+}
+
+.leftMenu .title {
+    padding: 16px;
+    border-bottom: 1px solid #CCC;
+}
+
+.leftMenu .title p {
+    font-size: 24px;
+}
+
+.leftMenu .title span {
+    font-size: 14px;
+}
+
+.leftMenu .content {
+    width: 100%;
+    padding-top: 15px;
+}
+
+.leftMenu .content .cardList {
+    width: 100%;
+}
+
+.leftMenu .content .cardList button {
+    cursor: move;
+}
+
+.leftMenu .content .addButton button {
+    width: 150px;
+    height: 38px;
+    margin: 10px 20px;
+    border: 1px dashed #E5E5E5;
+}
+
+.leftMenu .content .buttonActive {
+    width: 150px;
+    height: 40px;
+    margin: 0 20px;
+    background: #108EE9;
+    color: #FFF;
+}
+
+.leftMenu .content .buttonNotActive {
+    width: 150px;
+    height: 40px;
+    margin: 0 20px;
+}
+
+.leftMenu .content .buttonNotActive span, .leftMenu .content .buttonActive span {
+    width: 110px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    line-height: 40px;
+}

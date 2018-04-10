@@ -3,20 +3,18 @@ import { connect } from 'react-redux';
 import { Table, Button } from 'antd';
 import { PATH } from '../../constants/Link';
 import { Link } from 'react-router-dom';
-import { REQ_URL } from '../../constants';
+import { MESSAGE, REQ_URL, VIDEOS_PAGE_SIZE } from '../../constants';
 import yxFetch from '../../utils/fetch';
 import LayoutWrapper from '../public/LayoutWrapper';
+import { message } from 'antd';
 
 // todo 根据实际字段修改需要展示的内容
-export const videoListColumns = [{
+const videoListColumns = [{
     title: 'ID',
-    dataIndex: 'id',
+    dataIndex: 'episodeId',
 }, {
     title: '标题',
-    dataIndex: 'title',
-}, {
-    title: '用户昵称',
-    dataIndex: 'nickName',
+    dataIndex: 'name',
 }, {
     title: '操作',
     render: (text, record, index) => {
@@ -38,24 +36,32 @@ class VideoList extends Component {
 
     componentDidMount() {
         // todo 初始化获取数据
-        this.fetchVideoList(1, 3);
+        this.fetchVideoList(1);
     }
 
-    async fetchVideoList(page, type) {
+    async fetchVideoList(pageIndex) {
         // todo 测试数据
-        let res = await yxFetch(REQ_URL.GET_VIDEO_LIST, {
-            offset: 5,
-            limit: 5,
-            type: type,
+        let res = await yxFetch(REQ_URL.SEARCH_VIDEO_LISTS, {
+            pageIndex: pageIndex,
+            pageSize: VIDEOS_PAGE_SIZE,
         });
         if (res.code === 0) {
             this.setState({
-                dataSources: res.data.videoShortVos,
+                dataSources: res.data.data,
+                total: res.data.records,
             });
+        } else {
+            console.log(MESSAGE.GET_VIDEO_LIST, res);
+            message.error(MESSAGE.GET_VIDEO_LIST);
         }
     }
 
     render() {
+        const pagination = {
+            showQuickJumper: true,
+            pageSize: VIDEOS_PAGE_SIZE,
+            total: this.state.total,
+        };
         return (
             <LayoutWrapper
                 match={this.props.match}
@@ -65,7 +71,9 @@ class VideoList extends Component {
                     <Table
                         dataSource={this.state.dataSources}
                         columns={videoListColumns}
-                        rowKey={record => record.id}
+                        pagination={pagination}
+                        rowKey={record => record.episodeId}
+                        onChange={(pagination) => { this.fetchVideoList(pagination.current); }}
                     />
                 </div>
             </LayoutWrapper>

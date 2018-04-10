@@ -4,7 +4,7 @@ import yxFetch from '../utils/fetch';
 import { REQ_URL } from '../constants/index';
 import { REDUCERS_NAME } from '../constants/StateName';
 import { PATH } from '../constants/Link';
-import { STORAGE_NAME } from '../constants';
+import { MESSAGE, STORAGE_NAME } from '../constants';
 
 export const loggedIn = (json, userName) => ({
     type: REDUCERS_NAME.LOGIN,
@@ -29,7 +29,8 @@ export const toLogin = (userInfo, history, from) => dispatch => {
             storage.set(STORAGE_NAME.ACCESS_TOKEN, res.data.accessToken);
             history.push(from || PATH.ROOT);
         } else {
-            message.error(res.errmsg);
+            console.log(MESSAGE.LOGIN, res);
+            message.error(MESSAGE.LOGIN);
         }
     });
 };
@@ -42,7 +43,8 @@ export const toLogout = (history, userName, accessToken) => dispatch => {
             storage.remove(STORAGE_NAME.ACCESS_TOKEN);
             history.push(PATH.ROOT);
         } else {
-            message.error(res.errmsg);
+            console.log(MESSAGE.LOGOUT, res);
+            message.error(MESSAGE.LOGOUT);
         }
     });
 };

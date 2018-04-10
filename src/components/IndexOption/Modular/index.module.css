@@ -1,0 +1,26 @@
+.wrapper {
+    position: relative;
+}
+
+.wrapper .swiperWrapper {
+    cursor: pointer;
+}
+
+.wrapper .pagination {
+    position: relative;
+}
+
+.wrapper .pagination li {
+    margin: 0 5px;
+}
+
+.imageWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #CCCCCC;
+}
+
+.imageWrapper img {
+    width: 100%;
+}

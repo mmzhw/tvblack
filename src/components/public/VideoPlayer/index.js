@@ -10,7 +10,7 @@ class VideoPlayer extends Component {
             sources: props.sources || [],
             controls: props.controls || true,
             width: props.width || '768',
-            poster: props.poster || '',
+            poster: props.poster || require('../../../assets/none.png'),
         };
         this.player = null;
     }
@@ -27,6 +27,7 @@ class VideoPlayer extends Component {
     }
 
     initPlayer() {
+        console.log(this.state);
         this.player = videojs(this.refs.videoPlayer, { ...this.state }, () => { console.log('onPlayerReady', this); });
     }
 
