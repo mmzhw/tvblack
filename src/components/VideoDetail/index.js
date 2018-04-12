@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Form, Input, message, Avatar, Icon, Modal } from 'antd';
 import yxFetch from '../../utils/fetch';
 import { MESSAGE, NAME, REQ_URL, WIDTH_DATA } from '../../constants';
-import { handleImgUrl } from '../../utils/tools';
+import { handleImgUrl, handleVideoUrl } from '../../utils/tools';
 import LayoutWrapper from '../public/LayoutWrapper';
 import { FORM_DATA, VIDEO_DETAIL_KEY } from './videoKey';
 import VideoPlayer from '../public/VideoPlayer';
@@ -18,7 +18,7 @@ class VideoDetailClass extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            videoSources: [],
+            videoSources: null,
             videoId: props.match.params.id,
             avatar: '', // 头像地址
             videoVisable: false, // 视频播放框是否显示
@@ -36,7 +36,9 @@ class VideoDetailClass extends Component {
             });
             this.setState({
                 videoSources: [{
-                    src: res.data.playUrl,
+                    src: handleVideoUrl(res.data.playUrl),
+                    label: '普通',
+                    res: '普通'
                 }],
                 avatar: handleImgUrl(res.data.avatar),
                 poster: handleImgUrl(res.data.picUrl) || require('../../assets/none.png'),
@@ -83,7 +85,7 @@ class VideoDetailClass extends Component {
                             destroyOnClose={true}
                         >
                             <VideoPlayer
-                                sources={this.state.videoSources}
+                                videoSources={this.state.videoSources}
                                 poster={this.state.poster}
                                 width={WIDTH_DATA.VIDEO_WRAPPER}
                             />

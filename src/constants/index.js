@@ -17,7 +17,7 @@ export const REQ_URL = {
 
 export const BASE_URL = 'http://dxapi.youxiang0210.com';
 export const IMG_PRE_FIX = 'http://dx-image-test.itangchao.me/';
-export const VIDEO_PRE_FIX = 'http://dx-video-test.itangchao.me/';
+export const VIDEO_PRE_FIX = 'http://video.youxiang0210.com/';
 
 // localstorage存储的key
 export const STORAGE_NAME = {
@@ -29,6 +29,7 @@ export const STORAGE_NAME = {
 export const WIDTH_DATA = {
     VIDEO_MODAL: 800,
     VIDEO_WRAPPER: 400,
+    PLAYER_WIDTH: 800,
 };
 
 // 一些显示的名称
@@ -81,6 +82,11 @@ export const PARAMETER_CATE = {
     1: 'catagory',
     2: 'year',
     3: 'area',
+};
+
+export const PLAY_STATE = {
+    STATR: 1,
+    PAUSE: 0,
 };
 
 export const VIDEOS_PAGE_SIZE = 10;

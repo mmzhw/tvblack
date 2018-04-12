@@ -3,6 +3,7 @@ import axios from 'axios';
 import { BASE_URL } from '../constants/index';
 import { PATH } from '../constants/Link';
 import { STORAGE_NAME } from '../constants';
+import { message } from 'antd';
 
 let fetcher = axios.create({
     method: 'post',
@@ -31,6 +32,7 @@ fetcher.interceptors.request.use((config) => {
 
 fetcher.interceptors.response.use((response) => {
     if (response.data.code === 89001 || response.data.code === 81001) {
+        message.error('鉴权失败，即将退出');
         window.location.href = PATH.ROOT;
     }
     return response.data;
