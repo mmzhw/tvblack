@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import styles from './index.module.css';
 import LayoutWrapper from '../public/LayoutWrapper';
 import VideoPlayer from '../public/VideoPlayer';
-import { Input } from 'antd';
+import { Input, message } from 'antd';
 import { handleVideoUrl } from '../../utils/tools';
-import { PLAY_STATE, WIDTH_DATA } from '../../constants';
+import { PLAY_STATE, REQ_URL, WIDTH_DATA } from '../../constants';
+import yxFetch from '../../utils/fetch';
 
 const m3u8Parser = require('m3u8-parser');
 const quality = ['流畅', '标清', '高清', '1080P'];
@@ -60,6 +61,20 @@ class Player extends Component {
         }
     }
 
+    // 转码
+    transcoding() {
+        yxFetch(REQ_URL.VIDEO_PROCESS, {
+            videoDetailId: this.state.videoDetailId,
+            originalURL: this.state.originalUrl
+        }).then(res => {
+            if (res.code === 0) {
+
+            } else {
+                message.error(res.errmsg);
+            }
+        });
+    }
+
     render() {
         return (
             <LayoutWrapper
@@ -76,7 +91,7 @@ class Player extends Component {
                     />
                     <br/>
                     <Input.Search
-                        addonBefore='mp4'
+                        addonBefore='其他'
                         defaultValue={'足协罚单阿兰肘击对手禁赛8场罚款5万6_mp4_240P_20180411.mp4'}
                         enterButton='播放'
                         onSearch={this.updataUrl.bind(this, 2)}

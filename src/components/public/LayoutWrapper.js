@@ -42,12 +42,12 @@ class LayoutWrapper extends Component {
                 <MenuLeft optionKey={breadcrumbs[0]} />
                 <Layout>
                     <Header className={styles.header} >
-                        <Dropdown overlay={menu}>
+                        {/* <Dropdown overlay={menu}>
                             <a className={styles.user}>
                                 <Icon type='user' />
                                 <span className={styles.userName}>{this.state.userName}</span>
                             </a>
-                        </Dropdown>
+                        </Dropdown>*/}
                     </Header>
                     <Content className={styles.content}>
                         <Breadcrumb className={styles.breadcrumbWrapper}>

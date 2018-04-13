@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
 
+import 'videojs-flash';
 import 'videojs-contrib-hls';
 
 import 'videojs-resolution-switcher';
@@ -61,10 +62,12 @@ class VideoPlayer extends Component {
             }
         };
 
+        option.techOrder = ['html5', 'flash'];
+
         option.plugins = {
             videoJsResolutionSwitcher: {
                 ui: true,
-                default: 'low',
+                default: 'high',
                 dynamicLabel: true
             }
         };

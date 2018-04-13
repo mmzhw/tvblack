@@ -27,11 +27,13 @@ const RouteWithSubRoutes = route => (
         render={ (props) => {
             // pass the sub-routes down to keep nesting
             // let { isAuthenticated } = store.getState().login; // 刷新后就取不到值了
-            const isAuthenticated = storage.get(STORAGE_NAME.ACCESS_TOKEN);
-            if (isAuthenticated) {
-                return (<route.component {...props} routes={route.routes} />);
-            }
-            return (<Redirect to={PATH.ROOT}/>);
+            // const isAuthenticated = storage.get(STORAGE_NAME.ACCESS_TOKEN);
+            // if (isAuthenticated) {
+            //     return (<route.component {...props} routes={route.routes} />);
+            // }
+            // return (<Redirect to={PATH.ROOT}/>);
+
+            return (<route.component {...props} routes={route.routes} />);
         }}
     />
 );

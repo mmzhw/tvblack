@@ -13,6 +13,7 @@ export const REQ_URL = {
     GET_CATEGORY: 'http://10.100.107.175:8088/tv/category/getcategory',
     GET_CHANNELS: 'http://10.100.107.175:8088/ms/back/queryChannel',
     PUBLISH_INDEX: 'http://10.100.107.175:8088/ms/back/publish', // 发布首页配置
+    VIDEO_PROCESS: '/back/video/process', // 转码
 };
 
 export const BASE_URL = 'http://dxapi.youxiang0210.com';

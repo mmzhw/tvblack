@@ -21,6 +21,7 @@
     "video.js": "^6.7.3",
     "videojs-contrib-hls": "^5.14.1",
     "videojs-contrib-quality-levels": "^2.0.4",
+    "videojs-flash": "^2.1.0",
     "videojs-resolution-switcher": "^0.4.2",
     "videojs-youtube": "2.0.8"
   },
