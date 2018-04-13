@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import 'swiper/dist/css/swiper.min.css';
 import { Form, Input, Button, AutoComplete, Icon, message, Select } from 'antd';
 import styles from './index.module.css';
 import ImgUpload from '../../public/ImgUpload';

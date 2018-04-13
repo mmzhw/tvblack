@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import 'swiper/dist/css/swiper.min.css';
 import { Form, Switch, Input, Select, Button, Popconfirm } from 'antd';
 import styles from './index.module.css';
 import { ASSEMBLY_NUM, MESSAGE } from '../../../constants';

@@ -50,22 +50,22 @@ export const MENU_ITEMS = [
         iconType: 'profile',
         url: PATH.PLAYER,
     },
-    // {
-    //     name: '视频管理',
-    //     key: 'videos',
-    //     iconType: 'profile',
-    //     url: PATH.VIDEOS,
-    // },
-    // {
-    //     name: '首页配置',
-    //     key: 'indexoption',
-    //     iconType: 'switcher',
-    //     url: PATH.INDEX_OPTIION,
-    // },
-    // {
-    //     name: '广告配置',
-    //     key: 'ad',
-    //     iconType: 'shop',
-    //     url: PATH.ADOPTION,
-    // },
+    {
+        name: '视频管理',
+        key: 'videos',
+        iconType: 'profile',
+        url: PATH.VIDEOS,
+    },
+    {
+        name: '首页配置',
+        key: 'indexoption',
+        iconType: 'switcher',
+        url: PATH.INDEX_OPTIION,
+    },
+    {
+        name: '广告配置',
+        key: 'ad',
+        iconType: 'shop',
+        url: PATH.ADOPTION,
+    },
 ];
