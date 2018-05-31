@@ -42,7 +42,7 @@ class LayoutWrapper extends Component {
 
         return (
             <Layout className={styles.wrapper}>
-                {/* <MenuLeft optionKey={breadcrumbs[0]} />*/}
+                <MenuLeft optionKey={breadcrumbs[0]} />
                 <Layout>
                     <Header className={styles.header} >
                         {/* <Dropdown overlay={menu}>

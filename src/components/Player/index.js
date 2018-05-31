@@ -90,7 +90,7 @@ class Player extends Component {
                         defaultValue={'《湮灭》终极预告_m3u8_240P_480P_720P_1080P_20180409.m3u8'}
                         enterButton='播放'
                         onSearch={this.updataUrl.bind(this, 1)}
-                        style={{ width: document.documentElement.clientWidth * 0.8, marginBottom: 20 }}
+                        style={{ width: videoWidth, marginBottom: 20 }}
                     />
                     <br/>
                     <Input.Search
@@ -98,7 +98,7 @@ class Player extends Component {
                         defaultValue={'足协罚单阿兰肘击对手禁赛8场罚款5万6_mp4_240P_20180411.mp4'}
                         enterButton='播放'
                         onSearch={this.updataUrl.bind(this, 2)}
-                        style={{ width: videoWidth }}
+                        style={{ width: videoWidth, marginBottom: 20 }}
                     />
                     <div style={{ width: videoWidth }} ref={'videoWrapper'}>
                         <VideoPlayer
