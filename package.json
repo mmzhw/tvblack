@@ -18,7 +18,7 @@
     "redux-thunk": "^2.2.0",
     "sortablejs": "^1.7.0",
     "swiper": "3.4.2",
-    "video.js": "^6.7.3",
+    "video.js": "^7.0.3",
     "videojs-contrib-hls": "^5.14.1",
     "videojs-contrib-quality-levels": "^2.0.4",
     "videojs-flash": "^2.1.0",

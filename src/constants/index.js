@@ -16,9 +16,9 @@ export const REQ_URL = {
     VIDEO_PROCESS: '/back/video/process', // 转码
 };
 
-export const BASE_URL = 'http://dxapi.youxiang0210.com';
-export const IMG_PRE_FIX = 'http://dx-image-test.itangchao.me/';
-export const VIDEO_PRE_FIX = 'http://video.youxiang0210.com/';
+export const BASE_URL = 'http://daxiangapi.youxiang0210.com';
+export const IMG_PRE_FIX = 'https://image.youxiang0210.com/';
+export const VIDEO_PRE_FIX = 'https://video.youxiang0210.com/';
 
 // localstorage存储的key
 export const STORAGE_NAME = {

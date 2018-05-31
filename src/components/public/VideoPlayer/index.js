@@ -6,8 +6,8 @@ import 'video.js/dist/video-js.css';
 import 'videojs-flash';
 import 'videojs-contrib-hls';
 
-import 'videojs-resolution-switcher';
-import 'videojs-resolution-switcher/lib/videojs-resolution-switcher.css';
+import './videojs-resolution-switcher';
+import './videojs-resolution-switcher.css';
 
 import './newVideo.css';
 import { PLAY_STATE } from '../../../constants';
@@ -17,7 +17,7 @@ class VideoPlayer extends Component {
         super(props);
         this.state = {
             controls: props.controls || true,
-            width: props.width || '768',
+            width: props.width || 'auto',
             autoplay: true,
             // sources: props.videoSources,
             poster: props.poster || require('../../../assets/none.png'),
@@ -62,7 +62,7 @@ class VideoPlayer extends Component {
             }
         };
 
-        option.techOrder = ['html5', 'flash'];
+        option.techOrder = ['html5'];
 
         option.plugins = {
             videoJsResolutionSwitcher: {
@@ -74,7 +74,7 @@ class VideoPlayer extends Component {
 
         let videoSources = this.props.videoSources;
 
-        this.player = videojs(this.refs.videoPlayer, option, () => {
+        window.xx = this.player = videojs(this.refs.videoPlayer, option, () => {
             let player = this.player;
             player.updateSrc(videoSources);
 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import styles from './index.module.css';
 import LayoutWrapper from '../public/LayoutWrapper';
 import VideoPlayer from '../public/VideoPlayer';
-import { Input, message } from 'antd';
+import { Input, message, Button } from 'antd';
 import { handleVideoUrl } from '../../utils/tools';
 import { PLAY_STATE, REQ_URL, WIDTH_DATA } from '../../constants';
 import yxFetch from '../../utils/fetch';
@@ -40,6 +40,7 @@ class Player extends Component {
                     });
                 });
                 hlsList = hlsList.reverse();
+                console.log(hlsList);
                 this.setState({
                     videoSources: hlsList,
                 });
@@ -49,7 +50,7 @@ class Player extends Component {
 
     updataUrl(type, value) {
         if (type === 1) {
-            this.parseHlsList(handleVideoUrl(value));
+            this.parseHlsList(handleVideoUrl('《湮灭》终极预告_m3u8_240P_480P_720P_1080P_20180409.m3u8'));
         } else {
             this.setState({
                 videoSources: [{
@@ -76,18 +77,20 @@ class Player extends Component {
     }
 
     render() {
+        let videoWidth = document.documentElement.clientWidth * 0.8;
         return (
             <LayoutWrapper
                 match={this.props.match}
                 history={this.props.history}
             >
+                <Button style={{ marginBottom: 20 }} type='primary' onClick={this.updataUrl.bind(this, 1)}>Primary</Button>
                 <div className={styles.wrapper}>
                     <Input.Search
                         addonBefore='m3u8'
                         defaultValue={'《湮灭》终极预告_m3u8_240P_480P_720P_1080P_20180409.m3u8'}
                         enterButton='播放'
                         onSearch={this.updataUrl.bind(this, 1)}
-                        style={{ width: WIDTH_DATA.PLAYER_WIDTH, marginBottom: 20 }}
+                        style={{ width: document.documentElement.clientWidth * 0.8, marginBottom: 20 }}
                     />
                     <br/>
                     <Input.Search
@@ -95,14 +98,14 @@ class Player extends Component {
                         defaultValue={'足协罚单阿兰肘击对手禁赛8场罚款5万6_mp4_240P_20180411.mp4'}
                         enterButton='播放'
                         onSearch={this.updataUrl.bind(this, 2)}
-                        style={{ width: WIDTH_DATA.PLAYER_WIDTH, marginBottom: 20 }}
+                        style={{ width: videoWidth }}
                     />
-                    <div style={{ width: 500, marginBottom: 20 }}>
+                    <div style={{ width: videoWidth }} ref={'videoWrapper'}>
                         <VideoPlayer
                             videoSources={this.state.videoSources}
                             poster={this.state.poster}
                             playState={this.state.playState}
-                            width={WIDTH_DATA.PLAYER_WIDTH}
+                            width={videoWidth}
                         />
                     </div>
 

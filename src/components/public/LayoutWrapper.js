@@ -7,6 +7,7 @@ import storage from '../../utils/storage';
 import { NAME, STORAGE_NAME } from '../../constants';
 import { toLogout } from '../../action';
 import { MENU_ITEMS } from '../../constants/Link';
+import { checkIsMobile } from '../../utils/tools';
 
 const MenuLeft = asyncComponent(() => import('./Menu'));
 const { Header, Content, Footer } = Layout;
@@ -37,9 +38,11 @@ class LayoutWrapper extends Component {
             </Menu>
         );
 
+        console.log(checkIsMobile());
+
         return (
             <Layout className={styles.wrapper}>
-                <MenuLeft optionKey={breadcrumbs[0]} />
+                {/* <MenuLeft optionKey={breadcrumbs[0]} />*/}
                 <Layout>
                     <Header className={styles.header} >
                         {/* <Dropdown overlay={menu}>
